@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Survey Page</title>
+    <script src="https://code.jquery.com/jquery.js"></script>
+</head>
+
+<body>
+
+    <div class="header">
+        <h1>Survey Questions</h1>
+    </div>
+
+    <div class="aboutYou">
+        <h2>About You</h2>
+        <form action="">
+            Name (Required):<br>
+            <input type="text" name="name" id="name" required>
+            <br>
+            Link to Photo Image (Required):<br>
+            <input type="text" name="photoLink" id="photoLink" required>
+            <br><br>
+            <h2>Question 1</h2>
+            <label for="ques1">Your mind is always buzzing with unexplored ideas and plans.</label>
+            <br>
+            <select name="ques1" id="ques1">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <br>
+            <h2>Question 2</h2>
+            <label for="ques2">Generally speaking, you rely more on your experience than your imagination.</label>
+            <br>
+            <select name="ques2" id="ques2">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <br>
+            <h2>Question 3</h2>
+            <label for="ques3">You find it easy to stay relaxed and focused even when there is some pressure.</label>
+            <br>
+            <select name="ques3" id="ques3">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <br>
+            <h2>Question 4</h2>
+            <label for="ques4">You rarely do something just out of sheer curiosity.</label>
+            <br>
+            <select name="ques4" id="ques4">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <br>
+            <h2>Question 2</h2>
+            <label for="ques5">People can rarely upset you.</label>
+            <br>
+            <select name="ques5" id="ques5">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <br>
+            <h2>Question 6</h2>
+            <label for="ques6">It is often difficult for you to relate to other people’s feelings.</label>
+            <br>
+            <select name="ques6" id="ques6">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <br>
+            <h2>Question 7</h2>
+            <label for="ques7">In a discussion, truth should be more important than people’s sensitivities.</label>
+            <br>
+            <select name="ques7" id="ques7">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <br>
+            <h2>Question 8</h2>
+            <label for="ques8">You rarely get carried away by fantasies and ideas.</label>
+            <br>
+            <select name="ques8" id="ques8">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <br>
+            <h2>Question 9</h2>
+            <label for="ques9">You think that everyone’s views should be respected regardless of whether they are
+                supported by facts or not.</label>
+            <br>
+            <select name="ques9" id="ques9">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <br>
+            <h2>Question 10</h2>
+            <label for="ques10">You feel more energetic after spending time with a group of people.</label>
+            <br>
+            <select name="ques10" id="ques10">
+                <option value="1">1 (Strongly Disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (Strongly Agree)</option>
+            </select>
+            <br><br>
+            <input type="submit" value="Submit" id="addUser">
+        </form>
+    </div>
+
+
+</body>
+
+
+<script src="../data/friends.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../server.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    var newUser;
+    var perfectMatch;
+    $("#addUser").click(function (event) {
+        event.preventDefault();
+        //pull data from form
+        newUser = {
+            name: $("#name").val().trim(),
+            photo: $("#photoLink").val().trim(),
+            scores: [],
+            scoresSum: 0
+        };
+        console.log("new user 1: " + newUser);
+        var findSum = 0;
+        for (var i = 0; i < 10; i++) {
+            newUser.scores.push($("#ques" + (i + 1)).val());
+            findSum += parseInt(newUser.scores[i]);
+        }
+        newUser.scoresTotal = findSum;
+        console.log("Scores: " + newUser.scores);
+        console.log("Total sum: " + findSum);
+        console.log("scoresTotal: " + newUser.scoresTotal);
+
+        //compares current users sum to the sums in friendsArr
+        $.ajax({ url: "/api/friends", method: "GET" }).then(function (response) {
+            // res.json(friendsData);
+            console.log(response);
+            console.log(response[0]);
+            console.log(response[0].name);
+
+            perfectMatch = response[0];
+            for (var i = 0; i < response.length - 2; i++) {
+                //compare abs values
+                var total1 = Math.abs(parseInt(perfectMatch.scoresSum) - parseInt(newUser.scoresSum));
+                var total2 = Math.abs(parseInt(response[i + 1].scoresSum) - parseInt(newUser.scoresSum));
+                if (total1 > total2) {
+                    perfectMatch = response[i + 1];
+                    console.log("current perf match: " + perfectMatch.name);
+                }
+                console.log("Total 1: " + total1);
+                console.log("Total 2: " + total2);
+            }
+            console.log("Perfect Match: " + perfectMatch.name);
+            yourMatch();
+
+            //     friendsArr.push(newUser);
+            //     console.log(newUser);
+            //     console.log(friendsArr);
+            //     alert("Your perfect match is "+perfectMatch);
+        });
+
+        $.ajax({ url: "/api/friends", method: "POST" }).then(function () {
+            console.log(newUser.name + " has been posted.");
+            //clear form
+            // for (var i = 0; i < 10; i++) {
+            //     $("#ques" + (i + 1)).val("");
+            // }
+        });
+    });
+    function yourMatch() {
+                alert("Your perfect match is " + perfectMatch.name);
+            }
+</script>
+
+</html>
