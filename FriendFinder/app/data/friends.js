@@ -19,7 +19,7 @@ var friendsArr = [{
 },
 {
     "name": "John",
-    "photo": "https://media.licdn.com/mpr/mpr/shrinknp_400_400/p/6/005/064/1bd/3435aa3.jpg",
+    "photo": "https://www.pexels.com/photo/adult-beard-boy-casual-220453/",
     "scores": [
         1,
         1,
