@@ -1,23 +1,72 @@
- <!DOCTYPE html>
- <html lang="en">
- <head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-     <title>Home Page</title>
-     <script src="https://code.jquery.com/jquery.js"></script>
-     
- </head>
+<!DOCTYPE html>
+<html lang="en">
 
- <body>
- <h1>Friend Finder</h1>
- <h2>Answer a few basic questions.</h2>
- <h2>Then find the friend with the greatest compatibility!</h2>
-    
- <button><a href="../survey">Go to Survey</a></button>
- </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home Page</title>
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <style>
+        html,
+        body {
+            text-align: center;
+            color: navy;
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
- <!-- <script src="https://code.jquery.com/jquery.js"></script> -->
+        body {
+            background-image: linear-gradient(to right, #f881798c, #f881795e, #fff, #f881795e, #f881798c);
+        }
+
+        h1 {
+            font-size: 4rem;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        h2 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 2rem;
+        }
+
+        h2:first-of-type {
+            color: red;
+        }
+
+        h2:nth-of-type(1) {
+            font-style: italic;
+            font-weight: lighter;
+        }
+
+        button {
+            width: 10rem;
+            height: 3rem;
+            background: #c6c6e9;
+            box-shadow: 0 0 5px black;
+            border: none;
+            margin-top: 2rem;
+        }
+
+        a {
+            text-decoration: none;
+            font-family: Arial, Helvetica, sans-serif;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Friend Finder</h1>
+    <h2>Answer a few basic questions.</h2>
+    <h2>Then find the friend with the greatest compatibility!</h2>
+
+    <button><a href="../survey">Go To Survey</a></button>
+</body>
+
+<!-- <script src="https://code.jquery.com/jquery.js"></script> -->
 <script src="../data/friends.js" type="text/javascript" charset="utf-8"></script>
 <script src="../../../FriendFinder/server.js" type="text/javascript" charset="utf-8"></script>
- </html>
+
+</html>

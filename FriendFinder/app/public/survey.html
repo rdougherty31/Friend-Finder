@@ -8,6 +8,35 @@
     <title>Survey Page</title>
     <script src="https://code.jquery.com/jquery.js"></script>
     <style>
+        html,
+        body {
+            text-align: center;
+            color: navy;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-image: linear-gradient(to right, #f881798c, #f881795e, #fff, #f881795e, #f881798c);
+        }
+        h1, h2 {
+            font-family: 'Courier New', Courier, monospace;
+        }
+        #addUser {
+            width: 5rem;
+            height: 3rem;
+            background: #c6c6e9;
+            box-shadow: 0 0 5px black;
+            border: none;
+        }
+
+        input {
+            margin: 1rem;
+        }
+
+        select {
+            margin-top: 1rem;
+        }
+
         /* The Modal (background) */
         .modal {
             display: none;
@@ -260,14 +289,14 @@
             // }
         });
     });
-    $(".close").click(function() {
-        $("#matchModal").css("display","none");
+    $(".close").click(function () {
+        $("#matchModal").css("display", "none");
     });
     function yourMatch() {
         // alert("Your perfect match is " + perfectMatch.name);
-        $("#matchModal").css("display","block");
+        $("#matchModal").css("display", "block");
         var perfMatch = $("<p>").text(perfectMatch.name);
-        var matchImg = $("<img>").attr("src",perfectMatch.photo);
+        var matchImg = $("<img>").attr("src", perfectMatch.photo);
         $(".modal-content").append(perfMatch);
         $(".modal-content").append(matchImg);
 
