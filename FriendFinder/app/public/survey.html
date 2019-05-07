@@ -266,8 +266,11 @@
     function yourMatch() {
         // alert("Your perfect match is " + perfectMatch.name);
         $("#matchModal").css("display","block");
-        $("<p>").html(perfectMatch);
-        $("<img>").attr("src",perfectMatch.photo);
+        var perfMatch = $("<p>").text(perfectMatch.name);
+        var matchImg = $("<img>").attr("src",perfectMatch.photo);
+        $(".modal-content").append(perfMatch);
+        $(".modal-content").append(matchImg);
+
     }
 </script>
 
