@@ -231,6 +231,7 @@
 <script src="../data/friends.js" type="text/javascript" charset="utf-8"></script>
 <script src="../../../FriendFinder/server.js" type="text/javascript" charset="utf-8"></script>
 <script>
+    var friends = require(friendsArr);
     var newUser;
     var perfectMatch;
     $("#addUser").click(function (event) {
@@ -275,7 +276,7 @@
             console.log("Perfect Match: " + perfectMatch.name);
             yourMatch();
 
-            //     friendsArr.push(newUser);
+                friends.push(newUser);
             //     console.log(newUser);
             //     console.log(friendsArr);
             //     alert("Your perfect match is "+perfectMatch);
@@ -291,12 +292,17 @@
     });
     $(".close").click(function () {
         $("#matchModal").css("display", "none");
+        findSum = 0;
     });
     function yourMatch() {
         // alert("Your perfect match is " + perfectMatch.name);
         $("#matchModal").css("display", "block");
-        var perfMatch = $("<p>").text(perfectMatch.name);
-        var matchImg = $("<img>").attr("src", perfectMatch.photo);
+        var perfMatch = $("<p>");
+            perfMatch.text(perfectMatch.name);
+            perfMatch.attr("class","currentMatch");
+        var matchImg = $("<img>");
+            matchImg.attr("src", perfectMatch.photo);
+            matchImg.attr("class","currentMatch");
         $(".modal-content").append(perfMatch);
         $(".modal-content").append(matchImg);
 
