@@ -233,8 +233,8 @@
 </body>
 
 
-<script src="../data/friends.js" type="text/javascript" charset="utf-8"></script>
-<script src="../../../FriendFinder/server.js" type="text/javascript" charset="utf-8"></script>
+<!-- <script src="../data/friends.js" type="text/javascript" charset="utf-8"></script>
+<script src="../../../FriendFinder/server.js" type="text/javascript" charset="utf-8"></script> -->
 <script>
     var newUser;
     var perfectMatch;
@@ -250,17 +250,25 @@
             photo: $("#photoLink").val().trim(),
             scores: [],
             scoresSum: 0
+            // function() {
+            //     this.scores=0;
+            //     for (var i=0;i<this.scores.length;i++) {
+            //         this.scoresSum += parseInt(this.scores[i])
+            //     }
+            // }
         };
         console.log("new user 1: " + newUser);
+        console.log("new user name: "+newUser.name);
+        console.log("new user scores sum: "+newUser.scoresSum);
         var findSum = 0;
         for (var i = 0; i < 10; i++) {
             newUser.scores.push($("#ques" + (i + 1)).val());
             findSum += parseInt(newUser.scores[i]);
         }
-        newUser.scoresTotal = findSum;
+        newUser.scoresSum = findSum;
         console.log("Scores: " + newUser.scores);
         console.log("Total sum: " + findSum);
-        console.log("scoresTotal: " + newUser.scoresTotal);
+        console.log("scoresTotal: " + newUser.scoresSum);
 
         //compares current users sum to the sums in friendsArr
         $.ajax({ url: "/api/friends", method: "GET" }).then(function (response) {
@@ -270,16 +278,17 @@
             console.log(response[0].name);
 
             perfectMatch = response[0];
-            for (var i = 0; i < response.length - 2; i++) {
+            for (var i = 0; i < response.length - 1; i++) {
                 //compare abs values
-                var total1 = Math.abs(parseInt(perfectMatch.scoresSum) - parseInt(newUser.scoresSum));
-                var total2 = Math.abs(parseInt(response[i + 1].scoresSum) - parseInt(newUser.scoresSum));
-                if (total1 > total2) {
+                var diff1 = Math.abs(parseInt(perfectMatch.scoresSum) - parseInt(newUser.scoresSum));
+                var diff2 = Math.abs(parseInt(response[i + 1].scoresSum) - parseInt(newUser.scoresSum));
+                console.log("current evaluation: "+response[i+1].name);
+                if (diff1 > diff2) {
                     perfectMatch = response[i + 1];
                     console.log("current perf match: " + perfectMatch.name);
                 }
-                console.log("Total 1: " + total1);
-                console.log("Total 2: " + total2);
+                console.log("Difference 1: " + diff1);
+                console.log("Difference 2: " + diff2);
             }
             console.log("Perfect Match: " + perfectMatch.name);
             yourMatch();
@@ -300,12 +309,17 @@
     });
     $(".close").click(function () {
         $("#matchModal").css("display", "none");
+        $(".currentMatch").remove();
     });
     function yourMatch() {
         // alert("Your perfect match is " + perfectMatch.name);
         $("#matchModal").css("display", "block");
-        var perfMatch = $("<p>").text(perfectMatch.name);
-        var matchImg = $("<img>").attr("src", perfectMatch.photo);
+        var perfMatch = $("<p>");
+            perfMatch.text(perfectMatch.name);
+            perfMatch.attr("class","currentMatch");
+        var matchImg = $("<img>");
+        matchImg.attr("src", perfectMatch.photo);
+            matchImg.attr("class","currentMatch");
         $(".modal-content").append(perfMatch);
         $(".modal-content").append(matchImg);
 
